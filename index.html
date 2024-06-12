@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StopBuy</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <script type="text/javascript" src="assets/js/jquery.js"></script>
+    <script type="text/javascript" src="assets/js/barcode.js"></script>
+    <script type="text/javascript" src="assets/js/boicoted.js"></script>
+    <script type="text/javascript" src="assets/js/script.js"></script>
+</head>
+<body>
+    <header>
+        <h1>StopBuy</h1>
+        <p>Boycott Zionist products and their collaborators</p>
+    </header>
+    <main>
+        <div id="barcode">
+            <video id="barcodevideo" autoplay></video>
+            <canvas id="barcodecanvasg"></canvas>
+            <div id="no-permission" class="hidden">
+                <p>Camera access denied. Please enable camera access to scan barcodes.</p>
+            </div>
+        </div>
+        <canvas id="barcodecanvas"></canvas>
+        <div id="result">Scan a barcode</div>
+        <section id="search-section">
+            <input type="text" id="searchInput" placeholder="Search product by name" />
+            <ul id="searchResults"></ul>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 StopBuy. All rights reserved.</p>
+    </footer>
+</body>
+</html>

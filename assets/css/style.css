@@ -20,73 +20,125 @@ header {
     text-align: center;
     width: 100%;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed; /* Fixed at the top */
+    top: 0; /* Aligned at the top */
+    left: 0; /* Aligned to the left */
+    z-index: 1000; /* Ensure it is above other elements */
 }
 
-header h1 {
-    margin: 0;
-    font-size: 2.5em;
+/* Tabs Container */
+#tabs-container {
+    position: fixed;
+    top: 80px; /* Adjust based on header height */
+    width: 100%;
+    background-color: #007b3a;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-header p {
-    margin: 0;
-    font-size: 1.2em;
-}
-
-/* Main Content Styles */
-main {
-    padding: 20px;
+#tabs {
     width: 100%;
     max-width: 1200px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex: 1;
-    justify-content: center;
-    text-align: center;
+    justify-content: center; /* Center the tabs */
+    margin: 0 auto;
 }
 
-#barcode {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.tablink {
+    background-color: #007b3a;
+    color: white;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 1em;
+    width: auto;
+    transition: background-color 0.3s;
+    margin: 0 10px; /* Add margin between tabs */
+}
+
+.tablink:hover {
+    background-color: #005f2b;
+}
+
+.tabcontent {
+    display: none;
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+    text-align: center;
+    margin-top: 140px; /* Space for the fixed header and tabs */
+    border: 1px solid #ddd;
+    border-top: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Active Tab */
+.tablink.active {
+    background-color: #005f2b;
+}
+
+/* Hero Section Styles */
+#hero-section {
+    background: url('../../assets/images/hero-bg.jpg') no-repeat center center/cover;
+    color: #fff;
+    padding: 100px 20px;
+    text-align: center;
     margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#hero-section h2 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+#hero-section p {
+    font-size: 1.5em;
+    margin-bottom: 40px;
+}
+
+.cta-button {
+    background-color: #d9534f;
+    color: #fff;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #c9302c;
+    transform: scale(1.05);
+}
+
+/* Barcode Section Styles */
+#scanner-container {
+    position: relative;
+    width: 640px; /* Adjust width */
+    height: 480px; /* Adjust height */
+    margin: auto;
     border: 4px dashed #d9534f;
     border-radius: 10px;
     padding: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-#barcodevideo, #barcodecanvas, #barcodecanvasg {
-    height: 400px;
-}
-
-#barcodecanvas {
-    display: none;
-}
-
-#barcodecanvasg {
+#scanner-container video, #scanner-container canvas {
+    width: 100%;
+    height: 100%;
     position: absolute;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
 }
 
-#no-permission {
+canvas.drawing, canvas.drawingBuffer {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #d9534f;
-    font-size: 1.5em;
-    text-align: center;
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.hidden {
-    display: none;
+    left: 0;
+    top: 0;
 }
 
 #result {
@@ -109,6 +161,7 @@ main {
     transform: scale(1.05);
 }
 
+/* Search Section Styles */
 #search-section {
     display: flex;
     flex-direction: column;
@@ -127,31 +180,11 @@ main {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-#searchResults {
-    list-style-type: none;
-    padding: 0;
-    width: 320px;
-    margin: 0 auto;
-    text-align: left;
-}
-
-#searchResults li {
+#searchResultMessage {
+    margin-top: 10px;
+    font-size: 1.2em;
+    color: #333;
     padding: 10px;
-    border-bottom: 1px solid #ddd;
-    background-color: #fff;
-    margin-bottom: 5px;
-    border-radius: 5px;
-    transition: background-color 0.3s, transform 0.3s;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-#searchResults li:hover {
-    background-color: #f1f1f1;
-    transform: scale(1.02);
-}
-
-#searchResults li:nth-child(odd) {
-    background-color: #d9edf7;
 }
 
 /* Footer Styles */
@@ -165,4 +198,72 @@ footer {
     position: fixed;
     bottom: 0;
     left: 0;
+}
+
+/* New Sections Styles */
+#top-products-section, #news-section {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px 0;
+    text-align: left;
+}
+
+#top-products-section h2, #news-section h2 {
+    font-size: 1.8em;
+    color: #007b3a;
+    margin-bottom: 10px;
+}
+
+#topProducts {
+    list-style-type: none;
+    padding: 0;
+}
+
+#topProducts li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    background-color: #fff;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#topProducts li:hover {
+    background-color: #f1f1f1;
+    transform: scale(1.02);
+}
+
+#topProducts li:nth-child(odd) {
+    background-color: #d9edf7;
+}
+
+#newsContent {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.news-item {
+    margin-bottom: 15px;
+}
+
+.news-item h3 {
+    font-size: 1.5em;
+    color: #333;
+}
+
+.news-item p {
+    font-size: 1em;
+    color: #666;
+}
+
+.news-item a {
+    color: #007b3a;
+    text-decoration: none;
+}
+
+.news-item a:hover {
+    text-decoration: underline;
 }

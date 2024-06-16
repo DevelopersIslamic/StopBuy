@@ -1,4 +1,5 @@
 var products = [
+    { name: 'Coca Cola', barcode: '5449000136336', isBoicoted: true},
     { name: 'Product 1', barcode: '8480012013892', isBoicoted: true},
     { name: 'Product 2', barcode: '2345678901234', isBoicoted: true},
     { name: 'Product 3', barcode: '3456789012345', isBoicoted: true},

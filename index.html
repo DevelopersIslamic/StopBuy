@@ -5,33 +5,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StopBuy</title>
     <link rel="stylesheet" href="assets/css/style.css" />
-    <script type="text/javascript" src="assets/js/jquery.js"></script>
-    <script type="text/javascript" src="assets/js/barcode.js"></script>
-    <script type="text/javascript" src="assets/js/boicoted.js"></script>
-    <script type="text/javascript" src="assets/js/script.js"></script>
+    <script src="assets/js/quagga.min.js"></script>
+    <script src="assets/js/jquery.min.js"></script> <!-- Updated to use the minified version -->
+    <script src="assets/js/boycotted.js"></script>
+    <script src="assets/js/script.js"></script>
+    <style>
+        #scanner-container {
+            position: relative;
+            width: 640px; /* Adjust width */
+            height: 480px; /* Adjust height */
+            margin: auto;
+            border: 4px dashed #d9534f;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #scanner-container video, #scanner-container canvas {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        canvas.drawing, canvas.drawingBuffer {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
 </head>
 <body>
     <header>
         <h1>StopBuy</h1>
         <p>Boycott Zionist products and their collaborators</p>
     </header>
-    <main>
-        <div id="barcode">
-            <video id="barcodevideo" autoplay></video>
-            <canvas id="barcodecanvasg"></canvas>
-            <div id="no-permission" class="hidden">
-                <p>Camera access denied. Please enable camera access to scan barcodes.</p>
-            </div>
+    
+    <div id="tabs-container">
+        <div id="tabs">
+            <button class="tablink active" onclick="openTab(event, 'home-tab')">Home</button>
+            <button class="tablink" onclick="openTab(event, 'barcode-tab')">Scan Barcode</button>
+            <button class="tablink" onclick="openTab(event, 'search-tab')">Search</button>
+            <button class="tablink" onclick="openTab(event, 'top-products-tab')">Top 100 Boycotted Products</button>
+            <button class="tablink" onclick="openTab(event, 'news-tab')">Latest News</button>
         </div>
-        <canvas id="barcodecanvas"></canvas>
-        <div id="result">Scan a barcode</div>
-        <section id="search-section">
-            <input type="text" id="searchInput" placeholder="Search product by name" />
-            <ul id="searchResults"></ul>
-        </section>
+    </div>
+
+    <main>
+        <div id="home-tab" class="tabcontent" style="display: block;">
+            <section id="hero-section">
+                <h2>Join the Movement</h2>
+                <p>Together, we can make a difference. Boycott products that support unethical practices.</p>
+                <button class="cta-button" onclick="openTab(event, 'barcode-tab')">Start Scanning Now</button>
+            </section>
+        </div>
+
+        <div id="barcode-tab" class="tabcontent">
+            <div id="scanner-container">
+                <video autoplay></video>
+                <canvas class="drawingBuffer"></canvas>
+            </div>
+            <div id="result">Scan a barcode</div>
+        </div>
+
+        <div id="search-tab" class="tabcontent">
+            <section id="search-section">
+                <input type="text" id="searchInput" placeholder="Search product by name" />
+                <div id="searchResultMessage"></div> <!-- Div to show the search result message -->
+            </section>
+        </div>
+
+        <div id="top-products-tab" class="tabcontent">
+            <section id="top-products-section">
+                <h2>Top 100 Boycotted Products</h2>
+                <ul id="topProducts"></ul>
+            </section>
+        </div>
+
+        <div id="news-tab" class="tabcontent">
+            <section id="news-section">
+                <h2>Latest News and Updates</h2>
+                <div id="newsContent"></div>
+            </section>
+        </div>
     </main>
     <footer>
         <p>&copy; 2024 StopBuy. All rights reserved.</p>
     </footer>
+    <audio id="barcode-sound" src="assets/audio/barcode.wav"></audio> <!-- Audio element -->
 </body>
 </html>

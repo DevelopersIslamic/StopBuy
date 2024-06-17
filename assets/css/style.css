@@ -1,29 +1,61 @@
 /* General Styles */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f5f5f5;
+    background-color: #ffffff; /* White background */
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     color: #333;
-    justify-content: center;
     align-items: center;
 }
 
 /* Header Styles */
 header {
-    background-color: #007b3a;
+    background-color: #4CAF50; /* Green background */
     color: #fff;
     padding: 20px;
-    text-align: center;
     width: 100%;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: fixed; /* Fixed at the top */
-    top: 0; /* Aligned at the top */
-    left: 0; /* Aligned to the left */
-    z-index: 1000; /* Ensure it is above other elements */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.logo {
+    margin: 0;
+}
+
+.header-content p {
+    margin: 0;
+    flex: 1;
+    text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+    header {
+        padding: 15px;
+    }
+
+    .header-content {
+        flex-direction: column;
+    }
+
+    .logo {
+        margin-bottom: 10px;
+    }
 }
 
 /* Tabs Container */
@@ -31,7 +63,7 @@ header {
     position: fixed;
     top: 80px; /* Adjust based on header height */
     width: 100%;
-    background-color: #007b3a;
+    background-color: #4CAF50; /* Green background */
     z-index: 1000;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -40,67 +72,106 @@ header {
     width: 100%;
     max-width: 1200px;
     display: flex;
+    flex-wrap: wrap; /* Allow tabs to wrap on smaller screens */
     justify-content: center; /* Center the tabs */
     margin: 0 auto;
 }
 
 .tablink {
-    background-color: #007b3a;
+    background-color: #4CAF50; /* Green background */
     color: white;
     border: none;
     outline: none;
     cursor: pointer;
     padding: 14px 16px;
     font-size: 1em;
-    width: auto;
+    flex: 1; /* Allow tabs to grow and shrink */
     transition: background-color 0.3s;
-    margin: 0 10px; /* Add margin between tabs */
+    margin: 5px; /* Add margin between tabs */
 }
 
 .tablink:hover {
-    background-color: #005f2b;
+    background-color: #45A049; /* Darker green on hover */
 }
 
-.tabcontent {
-    display: none;
+.tablink.active {
+    background-color: #388E3C; /* Even darker green when active */
+}
+
+/* Slider Section Styles */
+#slider-section {
+    margin-top: 160px; /* Space for the fixed header and tabs */
     width: 100%;
     max-width: 1200px;
     padding: 20px;
     text-align: center;
-    margin-top: 140px; /* Space for the fixed header and tabs */
     border: 1px solid #ddd;
-    border-top: none;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Active Tab */
-.tablink.active {
-    background-color: #005f2b;
-}
-
-/* Hero Section Styles */
-#hero-section {
-    background: url('../../assets/images/hero-bg.jpg') no-repeat center center/cover;
-    color: #fff;
-    padding: 100px 20px;
-    text-align: center;
-    margin-top: 20px;
+    background-color: #ffffff; /* White background */
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-#hero-section h2 {
-    font-size: 3em;
-    margin-bottom: 20px;
+.slider {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
 }
 
-#hero-section p {
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    box-sizing: border-box;
+}
+
+.slide img {
+    width: 100%;
+    display: block;
+    border-radius: 10px;
+}
+
+.slider-controls {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+}
+
+.prev, .next {
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.slogan {
+    margin-top: 20px;
+}
+
+.slogan h2 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    color: #4CAF50; /* Green text */
+}
+
+.slogan p {
     font-size: 1.5em;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
+    color: #4CAF50; /* Green text */
 }
 
 .cta-button {
-    background-color: #d9534f;
+    background-color: #4CAF50; /* Green background */
     color: #fff;
     border: none;
     padding: 15px 30px;
@@ -111,17 +182,52 @@ header {
 }
 
 .cta-button:hover {
-    background-color: #c9302c;
+    background-color: #388E3C; /* Darker green on hover */
     transform: scale(1.05);
+}
+
+@media only screen and (max-width: 768px) {
+    .slogan h2 {
+        font-size: 2em;
+    }
+
+    .slogan p {
+        font-size: 1.2em;
+    }
+
+    .cta-button {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+}
+
+/* Section Styles */
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+    text-align: center;
+    margin-top: 20px; /* Adjusted margin-top for other sections */
+    border: 1px solid #ddd;
+    border-top: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff; /* White background */
+    border-radius: 10px;
+    margin-bottom: 20px;
 }
 
 /* Barcode Section Styles */
 #scanner-container {
     position: relative;
-    width: 640px; /* Adjust width */
-    height: 480px; /* Adjust height */
-    margin: auto;
-    border: 4px dashed #d9534f;
+    width: 100%;
+    max-width: 640px;
+    height: auto;
+    aspect-ratio: 4 / 3; /* Maintain aspect ratio */
+    margin: 20px auto;
+    border: 4px dashed #4CAF50; /* Green border */
     border-radius: 10px;
     padding: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -142,128 +248,110 @@ canvas.drawing, canvas.drawingBuffer {
 }
 
 #result {
-    font-family: 'Verdana', sans-serif;
-    font-size: 1.5em;
-    margin-top: 20px;
-    text-align: center;
-    color: #fff;
-    padding: 10px 20px;
-    border: 2px solid #d9534f;
-    border-radius: 10px;
-    background-color: #d9534f;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s, transform 0.3s;
-    width: fit-content;
+    font-size: 1.2em;
+    margin-top: 10px;
+    color: #4CAF50; /* Green text */
 }
 
-#result:hover {
-    background-color: #c9302c;
-    transform: scale(1.05);
+#result.boicoted {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: red; /* Red text for boicoted products */
 }
 
 /* Search Section Styles */
 #search-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 #searchInput {
-    padding: 10px;
-    width: 300px;
-    margin: 20px 0;
-    border: 2px solid #007b3a;
+    width: 100%;
+    padding: 15px;
+    font-size: 1.2em;
+    border: 1px solid #ddd;
     border-radius: 5px;
-    background-color: #fff;
-    font-size: 1em;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
 }
 
 #searchResultMessage {
     margin-top: 10px;
+    font-size: 1em;
+    color: #4CAF50; /* Green text */
+}
+
+/* Top Products Section Styles */
+#top-products-section {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#top-products-section h2 {
+    margin-bottom: 20px;
+    color: #4CAF50; /* Green text */
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    width: 100%;
+}
+
+.product-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.product-card h3 {
     font-size: 1.2em;
-    color: #333;
-    padding: 10px;
+    margin-bottom: 10px;
+    color: #4CAF50; /* Green text */
+}
+
+.product-card p {
+    font-size: 1em;
+    color: #555;
+}
+
+/* News Section Styles */
+#news-section {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#news-section h2 {
+    margin-bottom: 20px;
+    color: #4CAF50; /* Green text */
+}
+
+#newsContent {
+    text-align: left;
 }
 
 /* Footer Styles */
 footer {
-    background-color: #000;
+    background-color: #4CAF50; /* Green background */
     color: #fff;
-    padding: 10px;
+    padding: 20px;
     text-align: center;
     width: 100%;
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    bottom: 0;
-    left: 0;
+    margin-top: auto; /* Push footer to the bottom */
 }
 
-/* New Sections Styles */
-#top-products-section, #news-section {
-    width: 100%;
-    max-width: 800px;
-    margin: 20px 0;
-    text-align: left;
-}
-
-#top-products-section h2, #news-section h2 {
-    font-size: 1.8em;
-    color: #007b3a;
-    margin-bottom: 10px;
-}
-
-#topProducts {
-    list-style-type: none;
-    padding: 0;
-}
-
-#topProducts li {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-    background-color: #fff;
-    margin-bottom: 5px;
-    border-radius: 5px;
-    transition: background-color 0.3s, transform 0.3s;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-#topProducts li:hover {
-    background-color: #f1f1f1;
-    transform: scale(1.02);
-}
-
-#topProducts li:nth-child(odd) {
-    background-color: #d9edf7;
-}
-
-#newsContent {
-    background-color: #fff;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.news-item {
-    margin-bottom: 15px;
-}
-
-.news-item h3 {
-    font-size: 1.5em;
-    color: #333;
-}
-
-.news-item p {
-    font-size: 1em;
-    color: #666;
-}
-
-.news-item a {
-    color: #007b3a;
-    text-decoration: none;
-}
-
-.news-item a:hover {
-    text-decoration: underline;
+@media only screen and (max-width: 768px) {
+    footer {
+        padding: 15px;
+    }
 }

@@ -12,15 +12,17 @@ body {
 
 header {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: fixed;
+    position: sticky;
     top: 0;
-    left: 0;
     width: 100%;
     z-index: 1000;
     padding: 10px 0;
     background-color: #4CAF50;
     color: #fff;
-    animation: slideInDown 1s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 header .slogan-container {
@@ -30,18 +32,13 @@ header .slogan-container {
 
 header .slogan {
     margin-top: 5px;
-    font-size: 1.5em; /* Increased font size */
+    font-size: 1.2em;
     font-weight: 300;
 }
 
 .language-switcher {
-    position: fixed;
-    top: 10px;
-    right: 10px;
     display: flex;
     justify-content: flex-end;
-    z-index: 1100;
-    background-color: #4CAF50;
     padding: 5px;
     border-radius: 5px;
 }
@@ -49,8 +46,8 @@ header .slogan {
 .language-switcher button {
     display: flex;
     align-items: center;
-    font-size: 0.8em; /* Reduced font size */
-    padding: 3px 6px; /* Reduced padding */
+    font-size: 0.8em;
+    padding: 3px 6px;
     margin-left: 5px;
 }
 
@@ -59,17 +56,22 @@ header .slogan {
 }
 
 #tabs-container {
-    position: fixed;
-    top: 60px;
+    position: sticky;
+    top: 50px;
     width: 100%;
-    z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 999;
     background-color: #4CAF50;
     padding: 10px 0;
+    overflow-x: auto;
 }
 
 #tabs-container .btn {
-    font-size: 1.2em;
+    font-size: 1em;
+}
+
+.container {
+    padding-top: 0px !important;
+    margin-top: 0px !important;
 }
 
 section {
@@ -78,11 +80,12 @@ section {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    animation: fadeInUp 1s ease-in-out;
+    margin-top: 20px;
 }
 
 #slider-section {
-    padding-top: 10px;
+    padding-top: 0px !important;
+    margin-top: 0px !important;
     padding-bottom: 20px;
     text-align: center;
 }
@@ -104,7 +107,7 @@ section {
 #scanner-container {
     position: relative;
     width: 100%;
-    max-width: 640px;
+    max-width: 600px;
     margin: 20px auto;
     border: 4px dashed #4CAF50;
     border-radius: 10px;
@@ -113,13 +116,13 @@ section {
 }
 
 #result {
-    font-size: 1.2em;
+    font-size: 1em;
     margin-top: 10px;
     color: #4CAF50;
 }
 
 #result.boicoted {
-    font-size: 1.5em;
+    font-size: 1.2em;
     font-weight: bold;
     color: red;
 }
@@ -131,13 +134,35 @@ section {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-#searchInput {
+.search-container {
+    position: relative;
     width: 100%;
-    padding: 15px;
-    font-size: 1.2em;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.search-input {
+    width: 100%;
+    padding: 15px 20px 15px 50px;
+    font-size: 1em;
     border: 1px solid #ddd;
-    border-radius: 5px;
-    box-sizing: border-box;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.search-input:focus {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    outline: none;
+}
+
+.search-icon {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    font-size: 1.2em;
+    color: #aaa;
 }
 
 #searchResultMessage {
@@ -180,13 +205,13 @@ section {
 }
 
 .product-card h3 {
-    font-size: 1.2em;
+    font-size: 1em;
     margin-bottom: 10px;
     color: #4CAF50;
 }
 
 .product-card p {
-    font-size: 1em;
+    font-size: 0.9em;
     color: #555;
 }
 
@@ -243,7 +268,6 @@ footer {
         transform: translateY(0);
         opacity: 1;
     }
-}
 
 .carousel-item {
     animation: fadeIn 1s;
@@ -255,4 +279,43 @@ footer {
 
 .cta-button:hover {
     transform: scale(1.1);
+}
+
+@media only screen and (max-width: 600px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .slogan-container {
+        order: 2;
+        margin-bottom: 10px;
+    }
+
+    .language-switcher {
+        order: 3;
+        margin-top: 10px;
+    }
+
+    #tabs-container {
+        top: 0;
+    }
+
+    #tabs-container .btn {
+        font-size: 0.9em;
+        white-space: nowrap;
+    }
+
+    #slider-section {
+        padding-top: 0px !important;
+        margin-top: 0px !important;
+    }
+
+    .product-card h3 {
+        font-size: 1em;
+    }
+
+    .product-card p {
+        font-size: 0.8em;
+    }
 }
